@@ -12,14 +12,10 @@ WORKDIR /src
 COPY ["./StockPot.csproj", "./StockPot/"]
 RUN dotnet restore "./StockPot/StockPot.csproj"
 COPY . .
-RUN echo "****************** Listing CWD Content *************************"
-RUN ls -a
-RUN echo "*****************************************************************"
-RUN dotnet build "./StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
+RUN dotnet build "./StockPot/StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/build
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./StockPot/StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
