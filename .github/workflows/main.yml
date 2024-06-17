@@ -46,6 +46,10 @@ jobs:
     needs: build
     
     steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       # Build the Docker image
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/stock-pot:latest StockPot/
