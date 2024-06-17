@@ -16,6 +16,11 @@ jobs:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          path: my-repo
+            
+      - name: Navitage to the solution directory
+        run: cd my-repo/StockPot  # Navigate into the solution directory
 
       # Set up .NET Core 8 SDK
       - name: Setup .NET Core
