@@ -16,11 +16,6 @@ jobs:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v2
-        # with:
-        #   path: my-repo
-            
-      # - name: Navitage to the solution directory
-      #   run: cd my-repo  # Navigate into the solution directory
 
       - name: Print GITHUB_WORKSPACE
         run: echo  $GITHUB_WORKSPACE
@@ -46,6 +41,11 @@ jobs:
       - name: Run tests
         run: dotnet test --no-restore --verbosity normal
 
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged
+
+    steps:
       # Build the Docker image
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/stock-pot:latest StockPot/
@@ -64,4 +64,3 @@ jobs:
       # Push the Docker image to Docker Hub
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/stock-pot:latest
-
