@@ -43,7 +43,7 @@ jobs:
       
   create_image:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     needs: build
     
     steps:
