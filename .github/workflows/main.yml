@@ -49,6 +49,10 @@ jobs:
       # Build the Docker image
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/stock-pot:latest StockPot/
+        env:
+          DOTNET_CLI_TELEMETRY_OPTOUT: true
+          DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+          DOTNET_NOLOGO: true
 
       # Login to Docker Hub
       - name: Docker Login
