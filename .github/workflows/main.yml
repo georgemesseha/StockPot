@@ -44,7 +44,7 @@ jobs:
   create_image:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
-    needs: build
+    # needs: build
     
     steps:
       # Checkout the repository code
