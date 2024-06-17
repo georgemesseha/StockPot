@@ -1,16 +1,36 @@
-name: Publish
+name: Build and Test ASP.NET Core 8 Application
 
 on:
-  workflow_dispatch:
   push:
-    branches: 
-    - dev
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
 
-  steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-    
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up .NET Core 8 SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Build the application
+      - name: Build the application
+        run: dotnet build --configuration Release --no-restore
+
+      # Run tests
+      - name: Run tests
+        run: dotnet test --no-restore --verbosity normal
