@@ -18,10 +18,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: my-repo
-          run: |
-            cd my-repo/StockPot  # Navigate into the solution directory
-            echo "********************* Current Working Directory ********************* "
-            pwd         # Print the current working directory
+            
+      - name: Navitage to the solution directory
+        run: cd my-repo/StockPot  # Navigate into the solution directory
 
       # Set up .NET Core 8 SDK
       - name: Setup .NET Core
