@@ -19,7 +19,8 @@ jobs:
         with:
           path: my-repo
           run: |
-            cd my-repo/StockPot  # Navigate into the custom checkout directory
+            cd my-repo/StockPot  # Navigate into the solution directory
+            echo "********************* Current Working Directory ********************* "
             pwd         # Print the current working directory
 
       # Set up .NET Core 8 SDK
