@@ -16,6 +16,11 @@ jobs:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          path: my-repo
+          run: |
+            cd my-repo  # Navigate into the custom checkout directory
+            pwd         # Print the current working directory
 
       # Set up .NET Core 8 SDK
       - name: Setup .NET Core
