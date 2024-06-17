@@ -11,6 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.action == 'pull_request'
     steps:
       # Checkout the repository code
       - name: Checkout code
@@ -43,7 +44,7 @@ jobs:
       
   create_image:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true
     # needs: build
     
     steps:
