@@ -9,7 +9,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["./StockPot/StockPot.csproj", "StockPot/"]
+COPY ["StockPot/StockPot.csproj", "StockPot/"]
 RUN dotnet restore "./StockPot/StockPot.csproj"
 COPY . .
 WORKDIR "/src/StockPot"
