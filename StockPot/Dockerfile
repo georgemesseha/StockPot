@@ -12,7 +12,6 @@ WORKDIR /src
 COPY ["./StockPot.csproj", "./StockPot/"]
 RUN dotnet restore "./StockPot/StockPot.csproj"
 COPY . .
-WORKDIR "/src/StockPot"
 RUN dotnet build "./StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
