@@ -12,11 +12,11 @@ WORKDIR /src
 # COPY ["./StockPot.csproj", "."]
 # RUN dotnet restore "./StockPot/StockPot.csproj"
 COPY . .
-RUN dotnet restore "./StockPot/StockPot.csproj"
-RUN dotnet build "./StockPot/StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet restore "./StockPot.csproj"
+RUN dotnet build "./StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/build
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./StockPot/StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./StockPot.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
