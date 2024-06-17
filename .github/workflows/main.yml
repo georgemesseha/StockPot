@@ -25,6 +25,9 @@ jobs:
       - name: Print GITHUB_WORKSPACE
         run: echo  $GITHUB_WORKSPACE
 
+      - name: List the workspace content
+        run: ls -a
+
       # Set up .NET Core 8 SDK
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
